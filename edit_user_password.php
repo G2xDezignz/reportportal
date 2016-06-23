@@ -109,7 +109,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "frmUser")) {
 			$updateGoTo .= $_SERVER['QUERY_STRING'];
 		  }*/
 	  $_SESSION['uinfo']="'".$_POST['fname']." ".$_POST['lname']."'";
-	  $_SESSION['umsg']=$_SESSION['uinfo']." has been edited.";
+	  $_SESSION['umsg']='<p><strong>' . $_SESSION['uinfo']."</strong> has been edited.</p>";
  } else {
 	   $updateGoTo = "main.php";
 	   $_SESSION['uinfo']="";

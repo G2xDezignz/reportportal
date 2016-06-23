@@ -116,7 +116,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "frmUser")) {
     $insertGoTo .= $_SERVER['QUERY_STRING'];
   }*/
   $_SESSION['uinfo']="'".$_POST['fname']." ".$_POST['lname']."'";
-  $_SESSION['umsg']=$_SESSION['uinfo']." has been added.";
+  $_SESSION['umsg']='<p><strong>' . $_SESSION['uinfo']."</strong> has been added.</p>";
   header(sprintf("Location: %s", $insertGoTo));
 }
 
