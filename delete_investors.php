@@ -88,6 +88,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 if ((isset($_POST['hIID'])) && ($_POST['hIID'] != "")) {
+   //delete all files associated with investor
+	mysql_select_db($database_adminConn, $adminConn);
+	$query_rsInvestorFiles = sprintf("SELECT rFile FROM ip_reports WHERE Investor = %s", 
+		GetSQLValueString($_POST['hIID'], "int"));
+	$rsInvestorFiles = mysql_query($query_rsInvestorFiles, $adminConn) or die(mysql_error());
+	$row_rsInvestorFiles = mysql_fetch_assoc($rsInvestorFiles);
+	$totalRows_rsInvestorFiles = mysql_num_rows($rsInvestorFiles);
+	do {
+		unlink("reports/".$row_rsInvestorFiles['rFile']);
+	} while ($row_rsInvestorFiles = mysql_fetch_assoc($rsInvestorFiles));
+	mysql_free_result($rsInvestorFiles);
+
+  //delete investor from SQL	
   $deleteSQL = sprintf("DELETE FROM ip_investors WHERE iID=%s",
                        GetSQLValueString($_POST['hIID'], "int"));
 
@@ -99,7 +112,7 @@ if ((isset($_POST['hIID'])) && ($_POST['hIID'] != "")) {
     $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
     $deleteGoTo .= $_SERVER['QUERY_STRING'];
   }*/
-  $_SESSION['umsg']=$_SESSION['uinfo'] . ' has been deleted.';  
+  $_SESSION['umsg']='<p><strong>' . $_SESSION['uinfo'] . '</strong> has been deleted.</p>';  
   header(sprintf("Location: %s", $deleteGoTo));
 }
 
