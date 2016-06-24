@@ -87,6 +87,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 }
 
+$btn2 = 1;
 mysql_select_db($database_adminConn, $adminConn);
 $query_rsInvestors = "SELECT * FROM ip_investors WHERE ip_investors.iID!=6 ORDER BY ip_investors.iName";
 $rsInvestors = mysql_query($query_rsInvestors, $adminConn) or die(mysql_error());
@@ -171,14 +172,13 @@ $totalRows_rsReports = mysql_num_rows($rsReports);
       </tr>
       <?php } while ($row_rsReports = mysql_fetch_assoc($rsReports)); ?>
   </table>
+  <?php mysql_free_result($rsReports); ?>
+  <?php $btn2 += $btn2; ?>
   <br />
   <?php } // Show if recordset not empty ?>
-<?php
-    mysql_free_result($rsReports);
-    ?>
   <?php } while ($row_rsInvestors = mysql_fetch_assoc($rsInvestors)); ?>
 </div>
-<?php if ($totalRows_rsReports > 0) { // Show if recordset not empty ?>
+<?php if ($btn2 > 1) { // Show if recordset not empty ?>
 <p><a href="add_reports.php" class="btn">Add New Report</a></p>
 <?php } //end recordset ?>
 </div>
