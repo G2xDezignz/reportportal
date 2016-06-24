@@ -121,7 +121,7 @@ if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "frmInvestor")) {
     $updateGoTo .= $_SERVER['QUERY_STRING'];
   }*/
   $_SESSION['uinfo']="'".$_POST['iname']."'";
-  $_SESSION['umsg']=$_SESSION['uinfo']." has been edited.";
+  $_SESSION['umsg']='<p><strong>' . $_SESSION['uinfo']."</strong> has been edited.</p>";
   header(sprintf("Location: %s", $updateGoTo));
 }
 ?>

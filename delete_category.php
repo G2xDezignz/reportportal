@@ -88,6 +88,19 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 if ((isset($_POST['hID'])) && ($_POST['hID'] != "")) {
+  //delete all files associated with report group
+	mysql_select_db($database_adminConn, $adminConn);
+	$query_rsReportGrpFiles = sprintf("SELECT rFile FROM ip_reports WHERE ReportGroup = %s", 
+		GetSQLValueString($_POST['hID'], "int"));
+	$rsReportGrpFiles = mysql_query($query_rsReportGrpFiles, $adminConn) or die(mysql_error());
+	$row_rsReportGrpFiles = mysql_fetch_assoc($rsReportGrpFiles);
+	$totalRows_rsReportGrpFiles = mysql_num_rows($rsReportGrpFiles);
+	do {
+		unlink("reports/".$row_rsReportGrpFiles['rFile']);
+	} while ($row_rsReportGrpFiles = mysql_fetch_assoc($rsReportGrpFiles));
+	mysql_free_result($rsReportGrpFiles);
+  
+  //delete report group from SQL	
   $deleteSQL = sprintf("DELETE FROM ip_reportgroup WHERE rgID=%s",
                        GetSQLValueString($_POST['hID'], "int"));
 

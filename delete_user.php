@@ -99,7 +99,7 @@ if ((isset($_POST['hfID'])) && ($_POST['hfID'] != "")) {
     $deleteGoTo .= (strpos($deleteGoTo, '?')) ? "&" : "?";
     $deleteGoTo .= $_SERVER['QUERY_STRING'];
   }*/
-  $_SESSION['umsg']=$_SESSION['uinfo'] . ' has been deleted.';
+  $_SESSION['umsg']='<p><strong>' . $_SESSION['uinfo'] . '</strong> has been deleted.</p>';
   header(sprintf("Location: %s", $deleteGoTo));
 }
 

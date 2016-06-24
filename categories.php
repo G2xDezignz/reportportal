@@ -137,7 +137,7 @@ $totalRows_rsReportGroup = mysql_num_rows($rsReportGroup);
 </tr>
 <?php do { ?>
   <tr>
-    <td class="t1"><?php echo($row_rsReportGroup['rgHide']==1 ? '<span class="msgHide">(*)'.$row_rsReportGroup["rgName"].'</span>' : $row_rsReportGroup['rgName']); ?></td>
+    <td class="t1"><?php echo($row_rsReportGroup['rgHide']==1 ? '<span class="msgHide">*'.$row_rsReportGroup["rgName"].'</span>' : $row_rsReportGroup['rgName']); ?></td>
     <td class="t2"><?php if ($row_rsReportGroup['rgHide']!=1) { ?><a href="edit_category.php?id=<?php echo $row_rsReportGroup['rgID']; ?>">Edit</a> | <?php } ?><a href="delete_category.php?id=<?php echo $row_rsReportGroup['rgID']; ?>">Delete</a></td>
   </tr>
   <?php } while ($row_rsReportGroup = mysql_fetch_assoc($rsReportGroup)); ?>
