@@ -7,7 +7,7 @@ The app was developed with Dreamweaver (initially CS6; modified with CC 2015) in
 
 Role-based access summary:
 - Admins maintain users, company names, and report categories. New reports added by admins are automatically available.
-- Asset Managers can add/edit/delete user accounts of Investors only. New reports added are marked as 'Pending' to be approved by admins.
+- Asset Managers can add/edit/delete user accounts of Investors only; can view all reports and add new reports. New reports added are marked as 'Pending' to be approved by admins.
 - Accounting can view all reports and add new reports. New reports added are marked as 'Pending' to be approved by admins.
 - Executives can view all reports. 
 - Investors can only view assigned reports.
